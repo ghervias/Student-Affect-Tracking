@@ -1,4 +1,4 @@
-package tasks;
+package com.example.gui;
 
 import java.util.Objects;
 

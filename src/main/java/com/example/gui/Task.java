@@ -1,4 +1,4 @@
-package tasks;
+package com.example.gui;
 
 //interface, can have different types of tasks that will require different inputs
 public interface Task {
