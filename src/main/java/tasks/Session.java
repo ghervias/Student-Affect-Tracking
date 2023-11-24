@@ -1,16 +1,21 @@
-package com.example.gui;
+package tasks;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import javafx.scene.text.Text;
 
 public class Session {
     int durationMinutes;
     ArrayList<Task> tasks;
     int nextTaskIndex = 0;
+    Timer timer;
 
     public Session(int durationMinutes, ArrayList<Task> tasks){
         this.durationMinutes = durationMinutes;
         this.tasks = tasks;
+
+        int[] array = {0};
+        timer = new Timer(array, durationMinutes * 60);
     }
 
     public static Session createSession(int duration, ArrayList<Task> tasks){
@@ -42,14 +47,23 @@ public class Session {
         return tasks.get(nextTaskIndex - 1);
     }
 
+    public int getTaskNumber(){
+        return nextTaskIndex;
+    }
+
+    public void linkTimerText(Text timerText){
+        timer.setTimerText(timerText);
+        System.out.println("linking timer text..");
+    }
+
     //returns the remaining time in the session
 //    public int getRemainingTime(){}
 
     //starts the timer for the session, begins measurements
-//    public void startSession(){
-//        //start timer
-//        //indicate first task
-//    }
+    public void startSession(){
+        //start timer
+        timer.startTimer();
+    }
 //
 //    public void endSession(){}
 //
