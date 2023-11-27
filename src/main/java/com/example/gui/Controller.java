@@ -1,13 +1,7 @@
 package com.example.gui;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import tasks.Session;
 
-public class Controller {
-    @FXML
-    public CodeEditor myEditor = new CodeEditor("Hi mom");
-    @FXML
-    public void test(ActionEvent e){
-        System.out.println("test!");
-    }
+public interface Controller {
+    public void setMyService(Session session);
 }

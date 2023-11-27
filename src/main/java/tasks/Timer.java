@@ -25,11 +25,9 @@ public class Timer {
                 seconds--;
                 timeRemaining[0] = seconds;
                 if(timerInit){
-                    System.out.println("setting timer text... ");
                     String textString = "Time remaining: " + (int)Math.floor(seconds/60) + ":" + seconds % 60;
                     timerText.setText(textString);
                 }
-                System.out.println("seconds remaining: " + seconds);
             }
         }));
 
@@ -41,7 +39,6 @@ public class Timer {
         timeline.play();
     }
     public void setTimerText(Text timerText){
-        System.out.println("linking timer text in Timer...");
         this.timerText = timerText;
         timerInit = true;
     }

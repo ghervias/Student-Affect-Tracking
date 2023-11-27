@@ -9,17 +9,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import tasks.PythonRunner;
 import tasks.Session;
 import tasks.Task;
 
-public class TaskController implements Controller{
+public class CodeTaskController implements Controller{
     public Task currentTask;
     public Session currentSession;
     @FXML
     public Text taskTitle;
     public Text taskDesc;
-    public TextField answerField;
     public Text timerText;
+    public CodeEditor editor;
 
     public void updateDynamicText() {
         taskTitle.setText("Dynamic Text Updated!");
@@ -30,25 +31,35 @@ public class TaskController implements Controller{
     }
 
     public void checkAnswer(ActionEvent e){
-        String answer = answerField.getText();
+        String answer = editor.getCodeAndSnapshot();
+        PythonRunner.createPythonFile(answer);
+        System.out.println(answer);
+        try {
+            String ret = PythonRunner.runCode();
+            System.out.println(ret);
+            answer = ret;
+        }
+        catch (Exception runnerException){
+            runnerException.printStackTrace();
+        }
         System.out.println("USER ANSWER: " + answer);
         if (currentTask.checkCompletion(answer)){
             System.out.println("correct answer.");
             try {
-                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/fxml/MathTask.fxml"));
-                Parent root = loader.load();
-
-                //get the controller for the view and set its task to be the next task.
-                TaskController controller = loader.getController();
-                controller.setMyService(currentSession);
-
-
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+//                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//
+//                FXMLLoader loader = new FXMLLoader();
+//                loader.setLocation(getClass().getResource("/fxml/PythonTask.fxml"));
+//                Parent root = loader.load();
+//
+//                //get the controller for the view and set its task to be the next task.
+//                CodeTaskController controller = loader.getController();
+//                controller.setMyService(currentSession);
+//
+//
+//                Scene scene = new Scene(root);
+//                stage.setScene(scene);
+//                stage.show();
             }
             catch (Exception excep){
                 excep.printStackTrace();

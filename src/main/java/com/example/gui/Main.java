@@ -42,7 +42,7 @@ public class Main extends Application {
             Parent root = loader.load();
 
             //get the controller for the view and set its task to be the next task.
-            TaskController controller = loader.getController();
+            Controller controller = loader.getController();
             controller.setMyService(session);
 
             //display the view
