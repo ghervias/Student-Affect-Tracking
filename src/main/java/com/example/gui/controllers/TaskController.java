@@ -1,4 +1,4 @@
-package com.example.gui;
+package com.example.gui.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +32,7 @@ public class TaskController implements Controller{
     public void checkAnswer(ActionEvent e){
         String answer = answerField.getText();
         System.out.println("USER ANSWER: " + answer);
-        if (currentTask.checkCompletion(answer)){
+        if (currentSession.checkCompletion(answer)){
             System.out.println("correct answer.");
             try {
                 Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

@@ -49,7 +49,7 @@ public class MainOld extends Application {
         task = new DefaultTask("1 + 1", "2");
         listOfTasks = new ArrayList<>();
         listOfTasks.add(task);
-        session = new Session(10, listOfTasks);
+        session = new Session(10, listOfTasks, "OLD");
         launch(args);
     }
     @Override public void start(Stage stage) throws Exception {

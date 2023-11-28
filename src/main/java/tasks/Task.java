@@ -6,7 +6,7 @@ public interface Task {
     // Example: int MAX_VALUE = 100;
 
 
-    boolean checkCompletion(String userAnswer);
+    boolean checkCompletion(String userAnswer, int attemptTime);
 
     public String getAnswer();
 

@@ -1,14 +1,9 @@
-package com.example.gui;
+package com.example.gui.controllers;
 
+import com.example.gui.CodeEditor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import tasks.PythonRunner;
 import tasks.Session;
 import tasks.Task;
@@ -43,7 +38,7 @@ public class CodeTaskController implements Controller{
             runnerException.printStackTrace();
         }
         System.out.println("USER ANSWER: " + answer);
-        if (currentTask.checkCompletion(answer)){
+        if (currentSession.checkCompletion(answer)){
             System.out.println("correct answer.");
             try {
 //                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

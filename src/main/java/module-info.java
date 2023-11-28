@@ -8,4 +8,6 @@ module com.example.gui {
     exports com.example.gui;
     exports tasks;
     opens tasks to javafx.fxml;
+    exports com.example.gui.controllers;
+    opens com.example.gui.controllers to javafx.fxml;
 }

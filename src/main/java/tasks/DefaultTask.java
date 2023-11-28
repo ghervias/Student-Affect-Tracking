@@ -1,5 +1,6 @@
 package tasks;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class DefaultTask implements Task {
@@ -10,8 +11,9 @@ public class DefaultTask implements Task {
         this.answer = answer;
     }
 
+
     @Override
-    public boolean checkCompletion(String userAnswer) {
+    public boolean checkCompletion(String userAnswer, int attemptTime) {
         return userAnswer.equals(answer);
     }
 

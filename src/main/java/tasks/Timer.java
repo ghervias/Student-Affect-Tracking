@@ -8,7 +8,10 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+
 public class Timer {
+    private int initialTime;
     private int seconds;
     private Timeline timeline;
     private boolean timerInit = false;
@@ -16,6 +19,7 @@ public class Timer {
 
 
     public Timer(int[] timeRemaining, int setSeconds) {
+        initialTime = setSeconds;
         seconds = setSeconds;
         // Create a timeline that triggers an event every second
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
@@ -33,6 +37,14 @@ public class Timer {
 
         // Set the timeline to repeat indefinitely
         timeline.setCycleCount(Timeline.INDEFINITE);
+    }
+
+    public int getTimeLeft(){
+        return this.seconds;
+    }
+
+    public int getInitialTime(){
+        return this.initialTime;
     }
     public void startTimer() {
         // Start the timeline
