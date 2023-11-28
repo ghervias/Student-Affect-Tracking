@@ -1,16 +1,12 @@
-package com.example.gui;
+package gui;
 
-import com.example.gui.controllers.TaskController;
+import gui.controllers.TaskController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tasks.DefaultTask;
 import tasks.Session;
-import tasks.Task;
-
-import java.util.ArrayList;
 
 public class Main extends Application {
     private Stage primaryStage;

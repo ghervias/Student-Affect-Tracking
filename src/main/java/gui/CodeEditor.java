@@ -1,4 +1,4 @@
-package com.example.gui;
+package gui;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
 

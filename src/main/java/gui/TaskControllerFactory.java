@@ -1,4 +1,4 @@
-//package com.example.gui;
+//package gui;
 //
 //import javafx.fxml.FXMLLoader;
 //import tasks.Task;

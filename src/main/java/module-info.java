@@ -1,13 +1,15 @@
-module com.example.gui {
+module gui {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires org.json;
+    requires Java.WebSocket;
 
 
-    opens com.example.gui to javafx.fxml;
-    exports com.example.gui;
+    opens gui to javafx.fxml;
+    exports gui;
     exports tasks;
     opens tasks to javafx.fxml;
-    exports com.example.gui.controllers;
-    opens com.example.gui.controllers to javafx.fxml;
+    exports gui.controllers;
+    opens gui.controllers to javafx.fxml;
 }

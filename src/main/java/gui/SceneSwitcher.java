@@ -1,4 +1,4 @@
-package com.example.gui;
+package gui;
 
 public class SceneSwitcher {
 }

@@ -1,6 +1,6 @@
-package com.example.gui.controllers;
+package gui.controllers;
 
-import com.example.gui.CodeEditor;
+import gui.CodeEditor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
