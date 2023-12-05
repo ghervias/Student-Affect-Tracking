@@ -1,5 +1,8 @@
 package gui;
 
+import data.Blackboard;
+import gui.controllers.Controller;
+import gui.controllers.SessionSetupController;
 import gui.controllers.TaskController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,14 +10,34 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tasks.Session;
+import emotiv.*;
 
 public class Main extends Application {
     private Stage primaryStage;
     Session session;
 
+    public static void startBCIConnection() {
+        EmotivHandler delegate = ConnectBCI.connect();
+        int maxAttempts = 10;
+        int attemptCount = 0;
+
+        while (!delegate.isSubscribed() && attemptCount < maxAttempts) {
+            try {
+                Thread.sleep(1000); // 1 second delay
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            attemptCount++;
+        }
+        if (!delegate.isSubscribed()) {
+            System.err.println("Failed to subscribe after " + maxAttempts + " attempts.");
+        }
+    }
+
     public static void main(String[] args) {
-        launch(args);
+        startBCIConnection();
         System.out.println("here");
+        launch(args);
     }
 
     @Override
@@ -27,6 +50,10 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/SessionSetup.fxml"));
             Parent root = loader.load();
+
+            SessionSetupController controller = loader.getController();
+            Blackboard blackboardInstance = Blackboard.getInstance();
+            controller.setupBCI(blackboardInstance);
 
             //old code that goes straight to first task
 //            //get the controller for the view and set its task to be the next task.
@@ -61,6 +88,7 @@ public class Main extends Application {
             e.printStackTrace(); // Handle exceptions appropriately
         }
     }
+
 
 }
 

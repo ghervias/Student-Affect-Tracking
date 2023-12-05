@@ -151,6 +151,7 @@ public class EmotivHandler {
                 break;
             case 7:
                 subscribed = true;
+                System.out.println("SUBSCRIBED = TRUE");
         }
     }
 

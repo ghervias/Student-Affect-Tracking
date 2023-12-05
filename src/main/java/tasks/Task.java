@@ -10,6 +10,8 @@ public interface Task {
 
     public String getAnswer();
 
+    public String fxmlLocation();
+
     public String getDescription();
 
 }

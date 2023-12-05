@@ -61,6 +61,7 @@ public class EmotivSocket extends WebSocketClient {
             Object result = response.get("result");
             delegate.handle (id, result, this);
         } else {
+//            System.out.println(new JSONObject(message).toString());
             float time = new JSONObject(message).getFloat("time");
             JSONObject object = new JSONObject(message);
             JSONArray array = null;

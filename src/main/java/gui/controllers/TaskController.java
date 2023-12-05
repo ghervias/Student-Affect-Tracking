@@ -1,5 +1,6 @@
 package gui.controllers;
 
+import gui.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,27 +32,31 @@ public class TaskController implements Controller{
 
     public void checkAnswer(ActionEvent e){
         String answer = answerField.getText();
-        System.out.println("USER ANSWER: " + answer);
         if (currentSession.checkCompletion(answer)){
-            System.out.println("correct answer.");
-            try {
-                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/fxml/MathTask.fxml"));
-                Parent root = loader.load();
-
-                //get the controller for the view and set its task to be the next task.
-                TaskController controller = loader.getController();
-                controller.setMyService(currentSession);
-
-
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            if(currentSession.isOver()){
+                SceneSwitcher.endScreen(stage);
             }
-            catch (Exception excep){
-                excep.printStackTrace();
+            else {
+                SceneSwitcher.taskSwitch(stage, currentSession);
+//                try {
+//                    Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//
+//                    FXMLLoader loader = new FXMLLoader();
+//                    loader.setLocation(getClass().getResource("/fxml/MathTask.fxml"));
+//                    Parent root = loader.load();
+//
+//                    //get the controller for the view and set its task to be the next task.
+//                    TaskController controller = loader.getController();
+//                    controller.setMyService(currentSession);
+//
+//
+//                    Scene scene = new Scene(root);
+//                    stage.setScene(scene);
+//                    stage.show();
+//                } catch (Exception excep) {
+//                    excep.printStackTrace();
+//                }
             }
         }
         else{

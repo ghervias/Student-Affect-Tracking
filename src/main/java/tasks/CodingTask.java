@@ -1,12 +1,11 @@
 package tasks;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
-public class DefaultTask implements Task {
+public class CodingTask implements Task {
     String task;
     String answer; //move this to interface?
-    public DefaultTask(String arithmetic, String answer){
+    public CodingTask(String arithmetic, String answer){
         this.task = arithmetic;
         this.answer = answer;
     }
@@ -14,7 +13,19 @@ public class DefaultTask implements Task {
 
     @Override
     public boolean checkCompletion(String userAnswer, int attemptTime) {
-        return userAnswer.equals(answer);
+        PythonRunner.createPythonFile(userAnswer);
+        System.out.println(userAnswer);
+        String output;
+        try {
+            String ret = PythonRunner.runCode();
+            System.out.println(ret);
+            output = ret;
+            return output.equals(answer);
+        }
+        catch (Exception runnerException){
+            runnerException.printStackTrace();
+        }
+        return false;
     }
 
     @Override
@@ -24,7 +35,7 @@ public class DefaultTask implements Task {
 
     @Override
     public String fxmlLocation() {
-        return "/fxml/MathTask.fxml";
+        return "/fxml/PythonTask.fxml";
     }
 
     @Override
@@ -36,7 +47,7 @@ public class DefaultTask implements Task {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DefaultTask that = (DefaultTask) o;
+        CodingTask that = (CodingTask) o;
         return Objects.equals(task, that.task) && Objects.equals(answer, that.answer);
     }
 

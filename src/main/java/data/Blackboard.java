@@ -1,6 +1,8 @@
 package data;
 
+import javafx.scene.text.Text;
 import org.json.JSONArray;
+import tasks.Session;
 
 import java.util.Observable;
 import java.util.Stack;
@@ -17,6 +19,11 @@ public class Blackboard extends Observable {
   private String status;
 
   private static Blackboard instance;
+  private Text padText;
+  private Text affectText;
+  private boolean dataInit = false;
+  private Session session;
+  private boolean sessionInit = false;
 
   /**
    * Constructor for the singleton
@@ -43,9 +50,18 @@ public class Blackboard extends Observable {
    */
   public void add (Emotiv data, Class c) {
     stack.push(data);
+//    System.out.println("added data... " + status + ": " + data.toString());
     if (data.getClass() == Affect.class) {
-      setChanged();
-      notifyObservers(c);
+      affectText.setText(data.toString());
+      if(sessionInit){
+        session.addAffect(data.toString());
+      }
+    }
+    else if(data.getClass() == PadData.class){
+      padText.setText(data.toString());
+      if(sessionInit){
+        session.addPAD(data.toString());
+      }
     }
   }
 
@@ -98,8 +114,23 @@ public class Blackboard extends Observable {
   }
   public void addPAD(float time, JSONArray array) {
     PadData data = new PadData(array);
-    add(data, PadData.class);
     status = "PAD added.";
+    add(data, PadData.class);
   }
 
+  public void setDataText(Text padText, Text affectText){
+    this.padText = padText;
+    this.affectText = affectText;
+    dataInit = true;
+  }
+
+  public boolean isDataInit(){
+    return dataInit;
+  }
+
+
+  public void setSession(Session session) {
+    this.session = session;
+    sessionInit = true;
+  }
 }

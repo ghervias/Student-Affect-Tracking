@@ -12,4 +12,6 @@ module gui {
     opens tasks to javafx.fxml;
     exports gui.controllers;
     opens gui.controllers to javafx.fxml;
+    exports emotiv;
+    exports data;
 }

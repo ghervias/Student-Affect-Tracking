@@ -1,9 +1,12 @@
 package gui.controllers;
 
 import gui.CodeEditor;
+import gui.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import tasks.PythonRunner;
 import tasks.Session;
 import tasks.Task;
@@ -27,20 +30,16 @@ public class CodeTaskController implements Controller{
 
     public void checkAnswer(ActionEvent e){
         String answer = editor.getCodeAndSnapshot();
-        PythonRunner.createPythonFile(answer);
-        System.out.println(answer);
-        try {
-            String ret = PythonRunner.runCode();
-            System.out.println(ret);
-            answer = ret;
-        }
-        catch (Exception runnerException){
-            runnerException.printStackTrace();
-        }
         System.out.println("USER ANSWER: " + answer);
         if (currentSession.checkCompletion(answer)){
             System.out.println("correct answer.");
-            try {
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            if(currentSession.isOver()){
+                SceneSwitcher.endScreen(stage);
+            }
+            else {
+                SceneSwitcher.taskSwitch(stage, currentSession);
+//            try {
 //                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 //
 //                FXMLLoader loader = new FXMLLoader();
@@ -55,9 +54,10 @@ public class CodeTaskController implements Controller{
 //                Scene scene = new Scene(root);
 //                stage.setScene(scene);
 //                stage.show();
-            }
-            catch (Exception excep){
-                excep.printStackTrace();
+//            }
+//            catch (Exception excep){
+//                excep.printStackTrace();
+//            }
             }
         }
         else{

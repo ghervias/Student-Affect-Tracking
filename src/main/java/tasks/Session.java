@@ -6,7 +6,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
+import java.util.TreeMap;
+
+import data.Blackboard;
 import javafx.scene.text.Text;
 
 public class Session {
@@ -17,6 +21,8 @@ public class Session {
     int taskSwitchTime;
     BufferedWriter writer;
     String studentName;
+    TreeMap<Integer, String> affectData = new TreeMap<>();
+    TreeMap<Integer, String> padData = new TreeMap<>();
 
     private ArrayList<Integer> attemptTimes = new ArrayList<>(5);
     private ArrayList<String> answerAttempts = new ArrayList<>(5);
@@ -37,6 +43,16 @@ public class Session {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isOver(){
+        if(tasks.size() <= nextTaskIndex){
+            writeAndSave("\n====== AFFECT DATA ======\n" + affectData.toString() + "\n");
+            writeAndSave("\n====== PAD DATA ======\n" + padData.toString() + "\n");
+
+            return true;
+        }
+        return false;
     }
 
 //    public static Session createSession(int duration, ArrayList<Task> tasks){
@@ -84,6 +100,11 @@ public class Session {
         return tasks.get(nextTaskIndex - 1);
     }
 
+    public Task peekNextTask(){
+        return tasks.get(nextTaskIndex);
+    }
+
+
     private void writeAndSave(String content) {
         try {
             // Write content to the file
@@ -103,7 +124,6 @@ public class Session {
 
     public void linkTimerText(Text timerText){
         timer.setTimerText(timerText);
-        System.out.println("linking timer text..");
     }
 
     //returns the remaining time in the session
@@ -115,6 +135,16 @@ public class Session {
         timer.startTimer();
         taskSwitchTime = timer.getTimeLeft();
     }
+
+    public void addAffect(String data) {
+        affectData.put(timer.getInitialTime() - timer.getTimeLeft(), data);
+        System.out.println("added affect to session");
+    }
+    public void addPAD(String data) {
+        padData.put(timer.getInitialTime() - timer.getTimeLeft(), data);
+        System.out.println("added pad to session");
+    }
+
 //
 //    public void endSession(){}
 //

@@ -68,6 +68,12 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </VBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text fx:id="padText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fx:id="affectText" strokeType="OUTSIDE" strokeWidth="0.0" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

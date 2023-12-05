@@ -1,6 +1,5 @@
 package emotiv;
 
-import data.*   ;
 //import gui.StatusBar;
 //import gui.DataPanel;
 //
@@ -14,12 +13,12 @@ import java.net.URI;
  *  @author javiersgs
  *  @version 0.1
  */
-public class Main {
+public class ConnectBCI {
 
     /**
      * Constructor for the Main class.
      */
-    public Main() {
+    public ConnectBCI() {
 //        super("Emotiv WebSocket Client");
 //        // statusbar
 //        setLayout(new BorderLayout());
@@ -54,8 +53,11 @@ public class Main {
      *
      * @param args Command line arguments.
      */
-    public static void main(String[] args) {
-        Main main = new Main();
+    public static EmotivHandler connect() {
+        ServerNet server = new ServerNet();
+        Thread t = new Thread(server);
+        t.start();
+//        Main main = new Main();
 //        main.setSize(800, 600);
 //        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        main.setVisible(true);
@@ -65,9 +67,12 @@ public class Main {
             EmotivHandler delegate = new EmotivHandler();
             EmotivSocket handler = new EmotivSocket(uri, delegate);
             handler.connect();
+            return delegate;
         } catch (Exception e) {
-           // Blackboard.getInstance().addStatusbarMessage("Error: " + e.getMessage());
+//            Blackboard.getInstance().addStatusbarMessage("Error: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
         }
-
+        return null;
     }
 }
