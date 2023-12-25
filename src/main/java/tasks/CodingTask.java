@@ -5,22 +5,24 @@ import java.util.Objects;
 public class CodingTask implements Task {
     String task;
     String answer; //move this to interface?
-    public CodingTask(String arithmetic, String answer){
-        this.task = arithmetic;
+    String funCall;
+    public CodingTask(String question, String answer, String funCall){
+        this.task = question;
         this.answer = answer;
+        this.funCall = funCall;
     }
 
 
     @Override
     public boolean checkCompletion(String userAnswer, int attemptTime) {
-        PythonRunner.createPythonFile(userAnswer);
-        System.out.println(userAnswer);
-        String output;
+        PythonRunner.createPythonFile(userAnswer + "\n" + funCall);
+        System.out.println(userAnswer + "\n" + funCall);
+        double output;
         try {
             String ret = PythonRunner.runCode();
             System.out.println(ret);
-            output = ret;
-            return output.equals(answer);
+            output = Double.parseDouble(ret);
+            return output == Double.parseDouble(answer);
         }
         catch (Exception runnerException){
             runnerException.printStackTrace();

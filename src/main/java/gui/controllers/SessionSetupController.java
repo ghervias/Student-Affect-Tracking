@@ -35,16 +35,16 @@ public class SessionSetupController {
 
     public void createSession(){
         ArrayList<Task> listOfTasks;
-        Task task = new DefaultTask("1 + 1", "2");
-        Task task2 = new DefaultTask("2 + 2", "4");
-        Task task3 = new DefaultTask("5 - 5", "0");
-        Task task4 = new CodingTask("100 * 69", "6900");
+//        Task task = new DefaultTask("1 + 1", "2");
+//        Task task2 = new DefaultTask("2 + 2", "4");
+//        Task task3 = new DefaultTask("5 - 5", "0");
+        Task task4 = new CodingTask("Write and call a function called 'square()' that returns the square root of an input.", "10", "print(square(100))");
         Task task5 = new DefaultTask("5 * 5", "25");
-        Task task6 = new CodingTask("2^5", "32");
+        Task task6 = new CodingTask("2^5", "32", "");
         listOfTasks = new ArrayList<>();
-        listOfTasks.add(task);
-        listOfTasks.add(task2);
-        listOfTasks.add(task3);
+//        listOfTasks.add(task);
+//        listOfTasks.add(task2);
+//        listOfTasks.add(task3);
         listOfTasks.add(task4);
         listOfTasks.add(task5);
         listOfTasks.add(task6);
