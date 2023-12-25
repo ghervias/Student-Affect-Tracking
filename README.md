@@ -43,7 +43,7 @@ There is a standard method called the “International 10-20 system” which des
 One term that I will use later in this report is “event related potential”, or ERP. This refers to the measured brain response that is the direct result of a specific sensory, cognitive, or motor event. In this case, ERP could be the event of completing a task, incorrectly answering a question, or starting a new task that is very diﬀerent from the previous one.
 
 
-
+![alt text](src/main/resources/img1.jpg)
 Readings from the Insight 2.0 EEG headset using the EmotivPRO software.
 
 
@@ -54,7 +54,7 @@ The Pleasure-Arousal-Dominance model (PAD), is a conceptual framework used to un
 One such simpler model is the discrete model, which viewed emotions as finite and distinct categories, focusing on strong emotions like disgust, sadness, happiness, fear, anger, and surprise. In contrast, the continuous dimensional model acknowledges the continuous nature of aﬀective states.
 
 
-
+![alt text](src/main/resources/img2.jpg)
 Pleasure-Arousal-Dominance dimensional model.
 
 The PAD model is one of the metrics measured and recorded by the software tool in order to determine the aﬀective state of a student.
@@ -63,6 +63,7 @@ The PAD model is one of the metrics measured and recorded by the software tool i
 
 The application is mainly based around the JavaFX GUI library built for Java. The “Scene Builder” is a graphical interface for JavaFX that allows you to visually construct a GUI. It was used to style the individual screens shown in the application.
 
+![alt text](src/main/resources/img3.jpg)
 Screen capture of Scene Builder, a commonly used software to visually layout JavaFX visual components.
 
 
@@ -106,6 +107,8 @@ This study is significant because it further validates the usefulness in using E
 
 The main appealing property of this application is the use case it provides for a researcher. Using this application, a researcher is able to customize, start, and record a testing session that puts a student through any number of questions/tasks. The aﬀective state as measured through the Insight 2.0 EEG is recorded and mapped onto the events that occur during the testing session.
 
+![alt text](src/main/resources/img4.jpg)
+Save file example. Top to bottom: Header, question history, affect data, PAD data.
 
 #### Main Functional Requirements
 
@@ -125,28 +128,21 @@ Types of tasks
 There are currently two types of tasks (math and coding) that show up diﬀerently on the testing screen. More can be added to fit the needs of a researcher (multiple choice, visual matching, etc.)
 
 
-
-
-
-
-
-
-
-
-
+![alt text](src/main/resources/img5.jpg)
 Session setup page.
+
 Coding questions
 One type of task that can be presented to students is a coding task, where an input box implementing a code syntax highlighter allows students to write a piece of code. The application will run that code to evaluate whether or not it meets the requirements for the completion of that task. For example, a student may be asked to write a function ‘double(x)’ which takes in a number value x and returns 2*x. Then, the application will then attempt to call and test that function and determine if the results are correct.
 
 
 
-
-
-#### Security
-
+![alt text](src/main/resources/img6.jpg)
 Math Task
 
+![alt text](src/main/resources/img7.jpg)
 Coding task
+
+#### Security
 
 
 In terms of security, there are no checks done on the coding questions to ensure they are safe for the system they are being run on. This is something that I would like to learn about and work on in the future.
@@ -181,6 +177,8 @@ This module was copied from the SURP COBOT project. It is responsible for readin
 ##### .EMOTIV
 This module was also copied from a previous project. It handles the network connection with the EEG device.
 
+![alt text](src/main/resources/img8.jpg)
+Code Architecture Diagram for Software Tool
 
 
 
